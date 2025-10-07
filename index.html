@@ -2,66 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Privacy Policy – AM Consulting AI</title>
+  <title>Construction Supervision – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://amconsultingai.com/privacy">
-  <meta name="google-site-verification" content="vD2QaiLxREbeB0YXkM23hiHbg3HzxlJwSHBwmFiT-UM" />
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Construction Supervision — tools for contractor bids, budget control, and project tracking.">
   <style>
-    body {font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif; margin:2rem; color:#111;}
-    h1 {margin:0 0 0.5rem;}
-    .updated {color:#666; font-size:0.9rem; margin-bottom:1rem;}
-    .card {max-width:860px;}
+    /* ---------- Base / Theme ---------- */
+    :root{
+      --bg:#0b1020;
+      --card:#0f172aee;
+      --text:#e6e8ef;
+      --muted:#98a2b3;
+      --brand:#60a5fa;
+      --brand-2:#a78bfa;
+      --accent:#34d399;
+      --ring: 0 0 0 2px #60a5fa55, 0 10px 30px #0006;
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",Helvetica,sans-serif;
+      background: radial-gradient(1200px 900px at 20% -10%, #1a2246 0%, transparent 55%),
+                  radial-gradient(1200px 900px at 120% 10%, #2b174a 0%, transparent 50%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ---------- Animated Blobs (background flair) ---------- */
+    .blobs{
+      position:fixed; inset:-10% -10% auto -10%; z-index:-1; pointer-events:none; filter: blur(40px);
+    }
+    .blob{
+      position:absolute; width:42vmax; height:42vmax; border-radius:50%;
+      opacity:.32; mix-blend-mode:screen; will-change:transform;
+      animation: float 22s ease-in-out infinite;
+    }
+    .blob.b1{ left:-10vmax; top:-8vmax; background:#2563eb; }
+    .blob.b2{ right:-8vmax; top:-6vmax; background:#7c3aed; animation-duration:26s; animation-delay:-6s;}
+    .blob.b3{ left:35vw; top:40vh; background:#06b6d4; animation-duration:28s; animation-delay:-12s;}
+    @keyframes float{
+      0%,100%{ transform: translate3d(0,0,0) scale(1);}
+      50%    { transform: translate3d(2vmax,-1vmax,0) scale(1.08);}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .blob{animation:none}
+    }
+
+    /* ---------- Layout ---------- */
+    .container{ max-width:1120px; margin:0 auto; padding:24px; }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:12px 0 6px 0;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none }
+    .brand-badge{
+      width:42px; height:42px; border-radius:12px;
+      background: conic-gradient(from 210deg, #60a5fa, #a78bfa, #34d399, #60a5fa);
+      box-shadow: var(--ring);
+    }
+    .brand-title{ font-weight:700; letter-spacing:.3px }
+    .nav a{ margin-inline-start:18px; opacity:.9 }
+    .nav a.btn{ 
+      display:inline-block; padding:10px 16px; border-radius:999px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#0b1020; font-weight:700; text-decoration:none; box-shadow: var(--ring);
+    }
+    .nav a.btn:hover{ filter:saturate(1.15) brightness(1.05) }
+    .nav a.ghost{
+      padding:10px 14px; border-radius:999px; border:1px solid #33415540; text-decoration:none;
+      color:var(--text)
+    }
+    .nav a.ghost:hover{ border-color:#47556988 }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      padding:54px 0 26px 0; text-align:center;
+    }
+    .eyebrow{
+      display:inline-block; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+      color:#cbd5e1; background:#ffffff14; padding:6px 10px; border-radius:999px;
+      border:1px solid #e2e8f00f;
+    }
+    h1{
+      margin:16px auto 8px; max-width:900px;
+      font-size: clamp(28px, 6vw, 56px);
+      line-height:1.05; letter-spacing:-.02em;
+      background: linear-gradient(90deg, #fff, #c7d2fe 30%, #a5f3fc 60%, #bbf7d0 90%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      filter: drop-shadow(0 8px 40px #0006);
+    }
+    .lead{
+      max-width:860px; margin:0 auto; color:var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+    }
+    .cta{
+      margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; 
+      padding:12px 18px; border-radius:14px; font-weight:700; text-decoration:none;
+      box-shadow: var(--ring); transform: translateY(0); transition: transform .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px) }
+    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b1020; }
+    .btn.secondary{ background:#0b122a; color:#e2e8f0; border:1px solid #2b344e; }
+
+    /* ---------- Feature Cards ---------- */
+    .grid{
+      margin-top:42px; display:grid; gap:18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card{
+      background: linear-gradient(180deg, #0f172acc, #0b1228cc);
+      border:1px solid #243049; border-radius: var(--radius);
+      padding:18px; box-shadow: 0 10px 30px #0007, inset 0 1px 0 #ffffff10;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .card:hover{ transform: translateY(-4px); border-color:#3b82f6aa }
+    .icon{
+      width:38px; height:38px; border-radius:10px;
+      background:linear-gradient(135deg, #1f2937, #0b1228);
+      display:grid; place-items:center; margin-bottom:10px;
+      border:1px solid #334155aa;
+    }
+    .icon svg{ width:22px; height:22px; fill:#9ec1ff }
+    .card h3{ margin:.2rem 0 .2rem; font-size:18px }
+    .card p{ margin:.3rem 0 0; color:var(--muted) }
+
+    /* ---------- Steps / How it works ---------- */
+    .steps{
+      margin-top:34px; display:grid; gap:14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .step{
+      background:#0b1228; border:1px dashed #334155; border-radius:14px; padding:16px;
+    }
+    .step .num{
+      display:inline-grid; place-items:center; width:28px; height:28px; border-radius:999px;
+      background:#1f2937; color:#cbd5e1; font-weight:800; margin-inline-end:8px;
+      border:1px solid #334155;
+    }
+
+    /* ---------- Footer ---------- */
+    footer{
+      margin:50px 0 16px; color:#94a3b8; font-size:13px; text-align:center;
+    }
+    .links a{ margin:0 8px }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>Privacy Policy</h1>
-    <div class="updated">Last updated: October 7, 2025</div>
+  <div class="blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
 
-    <h2>Overview</h2>
-    <p>This Google Sheets Apps Script runs within your Google account. We don’t send your data to external servers.</p>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div class="brand-title">Construction Supervision</div>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <a class="ghost" href="#features">Features</a>
+        <a class="ghost" href="#how">How it works</a>
+        <a class="btn" href="/construction-supervision/privacy-policy.html" aria-label="Read our Privacy Policy">Privacy</a>
+      </nav>
+    </header>
 
-    <h2>Data We Access</h2>
-    <ul>
-      <li>Spreadsheet content and metadata in this file.</li>
-      <li>Protection settings (to copy protections to new sheets).</li>
-      <li>Authorization context required by Google Apps Script.</li>
-    </ul>
+    <section class="hero">
+      <span class="eyebrow">Smart spreadsheets • Real-time control</span>
+      <h1>Welcome to Construction Supervision!</h1>
+      <p class="lead">
+        Bid tracking, budget oversight, and contractor summaries—beautifully packaged for Google Sheets.
+        Learn how we handle your data in our Privacy Policy.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#features" aria-label="See features">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7" stroke="#0b1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Explore Features
+        </a>
+        <a class="btn secondary" href="/construction-supervision/privacy-policy.html">
+          Read our Privacy Policy ↗
+        </a>
+      </div>
+    </section>
 
-    <h2>How We Use Data</h2>
-    <ul>
-      <li>Duplicate template sheets, set values, update indexes.</li>
-      <li>Copy range/sheet protections.</li>
-      <li>Render a summary dialog or web view and activate target sheets.</li>
-    </ul>
+    <section id="features" class="grid" aria-label="feature highlights">
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18v4H3V5zm0 6h18v8H3v-8zm5 2v4h8v-4H8z"/></svg>
+        </div>
+        <h3>Contractor Bids</h3>
+        <p>Collect, compare, and mark winners across categories with clear, color-coded rules.</p>
+      </article>
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12l7-7 4 4 7-7v18H3z"/></svg>
+        </div>
+        <h3>Budget Control</h3>
+        <p>Live summaries from <em>בקרת תקציב</em> (status, totals, estimates) surfaced in one glance.</p>
+      </article>
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4V4zm0 6h10v10H4V10zm12 0h4v10h-4V10z"/></svg>
+        </div>
+        <h3>One-Click Navigation</h3>
+        <p>Open any contractor sheet directly from the summary dialog—no hunting through tabs.</p>
+      </article>
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3l9 4.5V12c0 5-3.8 9.7-9 10-5.2-.3-9-5-9-10V7.5L12 3z"/></svg>
+        </div>
+        <h3>Safe by Default</h3>
+        <p>Protections copy with every template duplication; optional triggers keep indices fresh.</p>
+      </article>
+    </section>
 
-    <h2>What We Don’t Do</h2>
-    <ul>
-      <li>No selling or sharing data with third parties.</li>
-      <li>No advertising or analytics.</li>
-      <li>No transfer of data to non-Google services.</li>
-    </ul>
+    <section id="how" class="steps" aria-label="how it works">
+      <div class="step">
+        <span class="num">1</span><strong>Duplicate a contractor</strong>
+        <p>Create a new tab from the template—protections and metadata come along automatically.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span><strong>Review bids</strong>
+        <p>Mark the winner per category; the summary reflects totals and links for quick access.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span><strong>Track the budget</strong>
+        <p>Project status, budget, and estimates stay in sync with your control sheet.</p>
+      </div>
+    </section>
 
-    <h2>Temporary Caching</h2>
-    <p>We may use Google’s CacheService (short-lived, within your document) to improve load time.</p>
+    <footer>
+      <div class="links">
+        <a href="./privacy-policy.html">Privacy Policy</a>
+        <span>•</span>
+        <a href="./tos.html">Terms of Service</a>
+      </div>
+      <div style="opacity:.8;margin-top:8px">© <span id="yr"></span> Construction Supervision</div>
+    </footer>
+  </div>
 
-    <h2>Security & Access</h2>
-    <p>Access is controlled by your Google Drive/Sheets sharing. Web Apps run “as” the configured account.</p>
-
-    <h2>Your Choices</h2>
-    <ul>
-      <li>Disable/remove the script anytime.</li>
-      <li>Delete triggers in Apps Script.</li>
-      <li>Adjust sheet protections and sharing.</li>
-    </ul>
-
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:office@amconsultingai.com">office@amconsultingai.com</a></p>
-
-    <p><a href="./tos.html">Terms of Service</a></p>
-  </main>
+  <script>
+    // small nicety
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
-
