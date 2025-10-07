@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>ניהול ופיקוח פרויקט בניה</title>
+  <title>ניהול ופיקוח פרויקט בניה – התחברות</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="ניהול ופיקוח פרויקט בניה – אפליקציית Google Sheets חינמית לניהול מכרזי קבלנים, בקרה תקציבית ומעקב.">
@@ -16,7 +16,6 @@
       --muted:#b8c0cc;
       --brand:#60a5fa;
       --brand2:#a78bfa;
-      --accent:#34d399;
       --ring: 0 0 0 2px #60a5fa55, 0 10px 30px #0006;
       --radius: 18px;
     }
@@ -50,13 +49,6 @@
     .brand{display:flex; align-items:center; gap:12px}
     .badge{width:44px; height:44px; border-radius:12px; background:conic-gradient(from 210deg,#60a5fa,#a78bfa,#34d399,#60a5fa); box-shadow:var(--ring)}
     .title{font-weight:800; font-size:20px; letter-spacing:.2px}
-    .nav a{margin-inline-start:14px; opacity:.92}
-    .nav a.btn{
-      display:inline-block; padding:10px 16px; border-radius:999px;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#0b1020; font-weight:800; box-shadow:var(--ring)
-    }
-    .nav a.btn:hover{filter:saturate(1.12) brightness(1.05)}
 
     .hero{
       margin-top:18px; display:grid; gap:22px;
@@ -95,10 +87,10 @@
     .profile{
       background:#0b1228; border:1px solid #243049; border-radius:var(--radius);
       padding:0; overflow:hidden; box-shadow:0 10px 30px #0007; width:100%;
-      max-width: 540px; /* אופציונלי: אפשר להקטין/להגדיל */
+      max-width: 540px;
     }
     .profile figure{margin:0}
-    .profile img{display:block; width:100%; height:auto;} /* <-- אין חיתוך או גובה קבוע */
+    .profile img{display:block; width:100%; height:auto;}
     .bio{padding:16px 18px}
     .bio h3{margin:.2rem 0 .4rem; font-size:20px}
     .kicker{color:#9fb4d5; font-weight:600; margin-bottom:6px}
@@ -116,13 +108,18 @@
     .card h4{margin:.2rem 0; font-size:18px}
     .card p{margin:.2rem 0; color:#b8c0cc}
 
-    /* Footer with powered by */
+    /* Footer (logo first, then Powered by; links below) */
     .site-footer{
-      margin-top:34px; padding:14px 16px; border-top:1px solid #334155;
-      color:#cbd5e1; font-size:13px; display:flex; align-items:center; justify-content:center; gap:10px;
+      margin-top:34px; padding:16px; border-top:1px solid #334155;
+      color:#cbd5e1; font-size:13px;
+      display:flex; flex-direction:column; align-items:center; gap:10px;
     }
-    .site-footer a{display:inline-flex; align-items:center}
-    .site-footer img{height:48px; display:block} /* לוגו גדול יותר */
+    .brandrow{display:flex; align-items:center; gap:10px}
+    .site-footer a.logo{display:inline-flex; align-items:center}
+    .site-footer img{height:48px; display:block}
+    .legal{opacity:.9}
+    .legal a{color:#9cc4ff; margin:0 6px}
+    .legal .sep{opacity:.6}
   </style>
 </head>
 <body>
@@ -134,10 +131,7 @@
         <div class="badge" aria-hidden="true"></div>
         <div class="title">ניהול ופיקוח פרויקט בניה</div>
       </div>
-      <nav class="nav" aria-label="ניווט">
-        <a class="btn" href="./privacy-policy.html">מדיניות פרטיות</a>
-        <a class="btn" href="./tos.html">תנאי שימוש</a>
-      </nav>
+      <!-- הוסרו קישורי הפרטיות/תנאים מהכותרת העליונה לפי בקשתך -->
     </header>
 
     <section class="hero">
@@ -159,13 +153,12 @@
 
         <div class="cta">
           <!-- החלף ל-URL של תחילת תהליך ההרשאה / ה-Web App -->
-          <a class="btn primary" href="YOUR_AUTH_URL_HERE" aria-label="התחברות עם Google">
+          <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1phtjXL8gXzZuNrB996PKV8iwOb4RzK76WYLEbyol53c/edit?pli=1&gid=1371651894#gid=1371651894" aria-label="התחברות עם Google">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path fill="#EA4335" d="M12 10.2v3.7h5.2c-.2 1.4-1.6 4-5.2 4-3.1 0-5.7-2.6-5.7-5.8s2.6-5.8 5.7-5.8c1.8 0 3 .8 3.7 1.5l2.6-2.6C16.9 3.2 14.7 2.3 12 2.3 6.9 2.3 2.8 6.4 2.8 11.5S6.9 20.7 12 20.7c6.5 0 9-4.6 9-7 0-.5-.1-.8-.1-1.2H12z"/>
             </svg>
             התחברו עם Google
           </a>
-          <a class="btn secondary" href="privacy-policy.html">קראו את מדיניות הפרטיות ↗</a>
         </div>
         <span class="free">חינם לשימוש</span>
 
@@ -215,17 +208,20 @@
       </aside>
     </section>
 
+    <!-- Footer: logo first, then 'Powered by'; links below -->
     <footer class="site-footer">
-      <span>Powered by</span>
-      <a href="https://amconsultingai.com" target="_blank" rel="noopener">
-        <img src="assets/AM_Logo_white_blue_glow.png" alt="AM Consulting AI">
-      </a>
+      <div class="brandrow">
+        <a class="logo" href="https://amconsultingai.com" target="_blank" rel="noopener">
+          <img src="assets/am_consulting_logo.png" alt="AM Consulting AI">
+        </a>
+        <span>Powered by</span>
+      </div>
+      <nav class="legal" aria-label="קישורים משפטיים">
+        <a href="privacy-policy.html">מדיניות פרטיות</a>
+        <span class="sep">•</span>
+        <a href="tos.html">תנאי שימוש</a>
+      </nav>
     </footer>
   </div>
-
-  <script>
-    // שנה נוכחית (אם תרצה להוסיף לקופירייט בעתיד)
-    // document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
-  </script>
 </body>
 </html>
