@@ -1,21 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>Construction Supervision – Home</title>
+  <title>ניהול ופיקוח פרויקט בניה – התחברות</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Construction Supervision — tools for contractor bids, budget control, and project tracking.">
-  <meta name="google-site-verification" content="vD2QaiLxREbeB0YXkM23hiHbg3HzxlJwSHBwmFiT-UM" />
+  <meta name="description" content="ניהול ופיקוח פרויקט בניה – אפליקציה חינמית וחכמה לניהול הצעות, תקציב ולוחות זמנים בגוגל שיטס.">
   <style>
-    /* ---------- Base / Theme ---------- */
     :root{
       --bg:#0b1020;
-      --card:#0f172aee;
+      --card:#0f172acc;
+      --card2:#0b1228e6;
       --text:#e6e8ef;
-      --muted:#98a2b3;
+      --muted:#b8c0cc;
       --brand:#60a5fa;
-      --brand-2:#a78bfa;
+      --brand2:#a78bfa;
       --accent:#34d399;
       --ring: 0 0 0 2px #60a5fa55, 0 10px 30px #0006;
       --radius: 18px;
@@ -23,239 +22,180 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      color:var(--text);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",Helvetica,sans-serif;
+      margin:0; color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans Hebrew",sans-serif;
       background: radial-gradient(1200px 900px at 20% -10%, #1a2246 0%, transparent 55%),
                   radial-gradient(1200px 900px at 120% 10%, #2b174a 0%, transparent 50%),
                   var(--bg);
       overflow-x:hidden;
+      display:flex; flex-direction:column;
     }
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* ---------- Animated Blobs (background flair) ---------- */
-    .blobs{
-      position:fixed; inset:-10% -10% auto -10%; z-index:-1; pointer-events:none; filter: blur(40px);
-    }
-    .blob{
-      position:absolute; width:42vmax; height:42vmax; border-radius:50%;
-      opacity:.32; mix-blend-mode:screen; will-change:transform;
-      animation: float 22s ease-in-out infinite;
-    }
-    .blob.b1{ left:-10vmax; top:-8vmax; background:#2563eb; }
-    .blob.b2{ right:-8vmax; top:-6vmax; background:#7c3aed; animation-duration:26s; animation-delay:-6s;}
-    .blob.b3{ left:35vw; top:40vh; background:#06b6d4; animation-duration:28s; animation-delay:-12s;}
-    @keyframes float{
-      0%,100%{ transform: translate3d(0,0,0) scale(1);}
-      50%    { transform: translate3d(2vmax,-1vmax,0) scale(1.08);}
-    }
-    @media (prefers-reduced-motion: reduce){
-      .blob{animation:none}
-    }
+    /* Animated blobs for flair */
+    .blobs{position:fixed; inset:-10% -10% auto -10%; z-index:-1; filter:blur(40px); pointer-events:none;}
+    .blob{position:absolute; width:42vmax; height:42vmax; border-radius:50%; opacity:.32; mix-blend-mode:screen; animation:float 22s ease-in-out infinite}
+    .b1{left:-10vmax; top:-8vmax; background:#2563eb}
+    .b2{right:-8vmax; top:-6vmax; background:#7c3aed; animation-duration:26s; animation-delay:-6s}
+    .b3{left:35vw; top:40vh; background:#06b6d4; animation-duration:28s; animation-delay:-12s}
+    @keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(2vmax,-1vmax,0) scale(1.08)}}
+    @media (prefers-reduced-motion: reduce){.blob{animation:none}}
 
-    /* ---------- Layout ---------- */
-    .container{ max-width:1120px; margin:0 auto; padding:24px; }
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:12px 0 6px 0;
-    }
-    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none }
-    .brand-badge{
-      width:42px; height:42px; border-radius:12px;
-      background: conic-gradient(from 210deg, #60a5fa, #a78bfa, #34d399, #60a5fa);
-      box-shadow: var(--ring);
-    }
-    .brand-title{ font-weight:700; letter-spacing:.3px }
-    .nav a{ margin-inline-start:18px; opacity:.9 }
-    .nav a.btn{ 
-      display:inline-block; padding:10px 16px; border-radius:999px;
-      background:linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#0b1020; font-weight:700; text-decoration:none; box-shadow: var(--ring);
-    }
-    .nav a.btn:hover{ filter:saturate(1.15) brightness(1.05) }
-    .nav a.ghost{
-      padding:10px 14px; border-radius:999px; border:1px solid #33415540; text-decoration:none;
-      color:var(--text)
-    }
-    .nav a.ghost:hover{ border-color:#47556988 }
+    .container{max-width:1100px; margin:0 auto; padding:24px; width:100%}
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .badge{width:44px; height:44px; border-radius:12px; background:conic-gradient(from 210deg,#60a5fa,#a78bfa,#34d399,#60a5fa); box-shadow:var(--ring)}
+    .title{font-weight:800; font-size:18px; letter-spacing:.2px}
+    .nav a{margin-inline-start:18px; opacity:.92}
+    .nav a.btn{display:inline-block; padding:10px 16px; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#0b1020; font-weight:800; box-shadow:var(--ring)}
+    .nav a.btn:hover{filter:saturate(1.12) brightness(1.05)}
 
-    /* ---------- Hero ---------- */
     .hero{
-      padding:54px 0 26px 0; text-align:center;
+      margin-top:18px; display:grid; gap:22px; grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
     }
-    .eyebrow{
-      display:inline-block; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-      color:#cbd5e1; background:#ffffff14; padding:6px 10px; border-radius:999px;
-      border:1px solid #e2e8f00f;
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+
+    .copy{
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid #243049; border-radius:var(--radius); padding:22px;
+      box-shadow:0 10px 30px #0007, inset 0 1px 0 #ffffff10;
     }
-    h1{
-      margin:16px auto 8px; max-width:900px;
-      font-size: clamp(28px, 6vw, 56px);
-      line-height:1.05; letter-spacing:-.02em;
-      background: linear-gradient(90deg, #fff, #c7d2fe 30%, #a5f3fc 60%, #bbf7d0 90%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      filter: drop-shadow(0 8px 40px #0006);
-    }
-    .lead{
-      max-width:860px; margin:0 auto; color:var(--muted);
-      font-size: clamp(15px, 2.2vw, 18px);
-    }
-    .cta{
-      margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
-    }
+    .eyebrow{display:inline-block; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#cbd5e1; background:#ffffff14; padding:6px 10px; border-radius:999px; border:1px solid #e2e8f00f}
+    h1{margin:12px 0 8px; font-size: clamp(26px, 5.8vw, 46px); line-height:1.08; letter-spacing:-.02em;
+       background:linear-gradient(90deg,#fff,#c7d2fe 30%,#a5f3fc 60%,#bbf7d0 90%); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .lead{color:var(--muted); font-size:18px; margin:6px 0 14px}
+    .pain{margin:12px 0 14px; color:#dbe3ef}
+    .pain li{margin:.35rem 0}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
     .btn{
-      display:inline-flex; align-items:center; gap:10px; 
-      padding:12px 18px; border-radius:14px; font-weight:700; text-decoration:none;
-      box-shadow: var(--ring); transform: translateY(0); transition: transform .15s ease;
+      display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; font-weight:800; text-decoration:none;
+      box-shadow:var(--ring); transform:translateY(0); transition:transform .15s ease
     }
-    .btn:hover{ transform: translateY(-1px) }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b1020; }
-    .btn.secondary{ background:#0b122a; color:#e2e8f0; border:1px solid #2b344e; }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:#ffffff; color:#0b1020}
+    .btn.secondary{background:#0b122a; color:#e2e8f0; border:1px solid #2b344e}
+    .btn svg{width:18px; height:18px}
 
-    /* ---------- Feature Cards ---------- */
-    .grid{
-      margin-top:42px; display:grid; gap:18px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    .profile{
+      background:#0b1228; border:1px solid #243049; border-radius:var(--radius); padding:0; overflow:hidden; box-shadow:0 10px 30px #0007;
+      display:grid; grid-template-rows: 260px auto;
     }
+    .profile img{width:100%; height:100%; object-fit:cover}
+    .bio{padding:16px 18px}
+    .bio h3{margin:.2rem 0 .4rem; font-size:20px}
+    .kicker{color:#9fb4d5; font-weight:600; margin-bottom:6px}
+    .contact{margin-top:10px; color:#cbd5e1; font-size:14px}
+    .contact a{color:#93c5fd}
+    .free{display:inline-block; margin-top:8px; padding:6px 10px; border-radius:10px; background:#16a34a22; color:#86efac; border:1px solid #22c55e55; font-weight:700}
+
+    .features{margin-top:28px; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))}
     .card{
-      background: linear-gradient(180deg, #0f172acc, #0b1228cc);
-      border:1px solid #243049; border-radius: var(--radius);
-      padding:18px; box-shadow: 0 10px 30px #0007, inset 0 1px 0 #ffffff10;
-      transition: transform .18s ease, border-color .18s ease;
+      background:linear-gradient(180deg, #0f172acc, #0b1228cc); border:1px solid #243049; border-radius:var(--radius); padding:16px;
+      transition:transform .18s ease, border-color .18s ease;
     }
-    .card:hover{ transform: translateY(-4px); border-color:#3b82f6aa }
-    .icon{
-      width:38px; height:38px; border-radius:10px;
-      background:linear-gradient(135deg, #1f2937, #0b1228);
-      display:grid; place-items:center; margin-bottom:10px;
-      border:1px solid #334155aa;
-    }
-    .icon svg{ width:22px; height:22px; fill:#9ec1ff }
-    .card h3{ margin:.2rem 0 .2rem; font-size:18px }
-    .card p{ margin:.3rem 0 0; color:var(--muted) }
+    .card:hover{transform:translateY(-4px); border-color:#3b82f6aa}
+    .card h4{margin:.2rem 0; font-size:18px}
+    .card p{margin:.2rem 0; color:#b8c0cc}
 
-    /* ---------- Steps / How it works ---------- */
-    .steps{
-      margin-top:34px; display:grid; gap:14px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-    .step{
-      background:#0b1228; border:1px dashed #334155; border-radius:14px; padding:16px;
-    }
-    .step .num{
-      display:inline-grid; place-items:center; width:28px; height:28px; border-radius:999px;
-      background:#1f2937; color:#cbd5e1; font-weight:800; margin-inline-end:8px;
-      border:1px solid #334155;
-    }
-
-    /* ---------- Footer ---------- */
-    footer{
-      margin:50px 0 16px; color:#94a3b8; font-size:13px; text-align:center;
-    }
-    .links a{ margin:0 8px }
+    footer{margin:30px 0 18px; text-align:center; color:#94a3b8; font-size:13px}
+    footer .links a{margin:0 8px}
   </style>
 </head>
 <body>
   <div class="blobs">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   </div>
 
   <div class="container">
     <header>
-      <a class="brand" href="#">
-        <div class="brand-badge" aria-hidden="true"></div>
-        <div class="brand-title">Construction Supervision</div>
-      </a>
-      <nav class="nav" aria-label="primary">
-        <a class="ghost" href="#features">Features</a>
-        <a class="ghost" href="#how">How it works</a>
-        <a class="btn" href="/construction-supervision/privacy-policy.html" aria-label="Read our Privacy Policy">Privacy</a>
+      <div class="brand">
+        <div class="badge" aria-hidden="true"></div>
+        <div class="title">ניהול ופיקוח פרויקט בניה</div>
+      </div>
+      <nav class="nav" aria-label="ראשי">
+        <a class="btn" href="privacy-policy.html">מדיניות פרטיות</a>
+        <a class="btn" href="tos.html">תנאי שימוש</a>
       </nav>
     </header>
 
     <section class="hero">
-      <span class="eyebrow">Smart spreadsheets • Real-time control</span>
-      <h1>Welcome to Construction Supervision!</h1>
-      <p class="lead">
-        Bid tracking, budget oversight, and contractor summaries—beautifully packaged for Google Sheets.
-        Learn how we handle your data in our Privacy Policy.
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#features" aria-label="See features">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12h14M13 5l7 7-7 7" stroke="#0b1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Explore Features
-        </a>
-        <a class="btn secondary" href="/construction-supervision/privacy-policy.html">
-          Read our Privacy Policy ↗
-        </a>
-      </div>
-    </section>
+      <!-- Text / value prop -->
+      <div class="copy">
+        <span class="eyebrow">חינם • חכם • בנוי לגוגל שיטס</span>
+        <h1>ניהול ופיקוח פרויקט בניה – בלי כאבי ראש</h1>
+        <p class="lead">
+          הצעות, תקציב, מעקב התקדמות ותקשורת – הכלי הזה מרכז את הכול במקום אחד. מתממשק לגוגל שיטס, עובד מכל מכשיר, ו<strong>חינם לשימוש</strong>.
+        </p>
 
-    <section id="features" class="grid" aria-label="feature highlights">
-      <article class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M3 5h18v4H3V5zm0 6h18v8H3v-8zm5 2v4h8v-4H8z"/></svg>
-        </div>
-        <h3>Contractor Bids</h3>
-        <p>Collect, compare, and mark winners across categories with clear, color-coded rules.</p>
-      </article>
-      <article class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M3 12l7-7 4 4 7-7v18H3z"/></svg>
-        </div>
-        <h3>Budget Control</h3>
-        <p>Live summaries from <em>בקרת תקציב</em> (status, totals, estimates) surfaced in one glance.</p>
-      </article>
-      <article class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4V4zm0 6h10v10H4V10zm12 0h4v10h-4V10z"/></svg>
-        </div>
-        <h3>One-Click Navigation</h3>
-        <p>Open any contractor sheet directly from the summary dialog—no hunting through tabs.</p>
-      </article>
-      <article class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3l9 4.5V12c0 5-3.8 9.7-9 10-5.2-.3-9-5-9-10V7.5L12 3z"/></svg>
-        </div>
-        <h3>Safe by Default</h3>
-        <p>Protections copy with every template duplication; optional triggers keep indices fresh.</p>
-      </article>
-    </section>
+        <ul class="pain">
+          <li>קשה לעקוב אחרי מכרזי קבלנים ומחירים?</li>
+          <li>אין תמונה עדכנית של תקציב מול ביצוע?</li>
+          <li>מפוזרים בין וואטסאפ, מיילים וטבלאות ישנות?</li>
+        </ul>
+        <p>האפליקציה הזו פותרת את זה: טופסולידיות, תקציב מרוכז, ניהול הצעות ולחיצת כפתור למעבר לכל גליון.</p>
 
-    <section id="how" class="steps" aria-label="how it works">
-      <div class="step">
-        <span class="num">1</span><strong>Duplicate a contractor</strong>
-        <p>Create a new tab from the template—protections and metadata come along automatically.</p>
+        <div class="cta">
+          <!-- Replace YOUR_AUTH_URL_HERE with your Apps Script / OAuth start URL -->
+          <a class="btn primary" href="YOUR_AUTH_URL_HERE">
+            <!-- Google G icon (inline SVG) -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 10.2v3.7h5.2c-.2 1.4-1.6 4-5.2 4-3.1 0-5.7-2.6-5.7-5.8s2.6-5.8 5.7-5.8c1.8 0 3 .8 3.7 1.5l2.6-2.6C16.9 3.2 14.7 2.3 12 2.3 6.9 2.3 2.8 6.4 2.8 11.5S6.9 20.7 12 20.7c6.5 0 9-4.6 9-7 0-.5-.1-.8-.1-1.2H12z"/></svg>
+            התחברו עם Google
+          </a>
+          <a class="btn secondary" href="privacy-policy.html">קראו את מדיניות הפרטיות ↗</a>
+        </div>
+        <span class="free">חינם לשימוש</span>
+
+        <div class="features">
+          <div class="card">
+            <h4>מכרזי קבלנים</h4>
+            <p>איסוף והשוואת הצעות, סימון זוכות, והדגשת המחיר המינימלי בכל קטגוריה.</p>
+          </div>
+          <div class="card">
+            <h4>בקרת תקציב</h4>
+            <p>סטטוס, תקציב כולל והערכות – נשלפים אוטומטית ומוצגים בצורה ברורה.</p>
+          </div>
+          <div class="card">
+            <h4>ניווט מהיר</h4>
+            <p>מעבר ישיר לכל גליון קבלן מתוך הסיכום – בלי לחפש טאבים.</p>
+          </div>
+          <div class="card">
+            <h4>הגנות והרשאות</h4>
+            <p>שכפול תבניות עם הגנות, טריגרים לעדכון רשימות, ותיעוד פעולות.</p>
+          </div>
+        </div>
       </div>
-      <div class="step">
-        <span class="num">2</span><strong>Review bids</strong>
-        <p>Mark the winner per category; the summary reflects totals and links for quick access.</p>
-      </div>
-      <div class="step">
-        <span class="num">3</span><strong>Track the budget</strong>
-        <p>Project status, budget, and estimates stay in sync with your control sheet.</p>
-      </div>
+
+      <!-- Omri profile -->
+      <aside class="profile">
+        <img src="https://i.ibb.co/6RpKFNLm/polak-ai-construction.jpg" alt="עומרי פולק – מפקח בנייה וקבלן רשום">
+        <div class="bio">
+          <div class="kicker">מוביל הפרויקט</div>
+          <h3>עומרי פולק – הנדסאי בניין, מפקח בנייה וקבלן רשום</h3>
+          <p>
+            אני, עומרי – הנדסאי בניין, מפקח בנייה וקבלן רשום. כאן כדי ללוות אתכם בכל שלב, מהתכנון ועד מסירת המפתח.
+            עבורי כל פרויקט הוא לא רק אתר עבודה, אלא הבית שלכם והחלום שלכם. לכן אני מקפיד על נוכחות באתר, דיוק בהנדסה ושקיפות מלאה מולכם.
+            עם ניסיון רחב, ידע מקצועי ומחויבות לסטנדרט הגבוה ביותר, אני מבטיח שתיהנו משקט נפשי ומתהליך בטוח – ותסיימו עם תוצאה מושלמת ושביעות רצון מלאה.
+          </p>
+          <div class="contact">
+            <div>✉️ <a href="mailto:omripolak@polak-pro.com">omripolak@polak-pro.com</a></div>
+            <div>📞 <a href="tel:+972546582019">054-6582019</a></div>
+          </div>
+        </div>
+      </aside>
     </section>
 
     <footer>
       <div class="links">
-        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="./privacy-policy.html">מדיניות פרטיות</a>
         <span>•</span>
-        <a href="./tos.html">Terms of Service</a>
+        <a href="./tos.html">תנאי שימוש</a>
       </div>
-      <div style="opacity:.8;margin-top:8px">© <span id="yr"></span> Construction Supervision</div>
+      <div style="opacity:.82; margin-top:8px">© <span id="yr"></span> ניהול ופיקוח פרויקט בניה</div>
     </footer>
   </div>
 
-  <script>
-    // small nicety
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
-
